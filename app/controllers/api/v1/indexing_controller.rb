@@ -3,8 +3,8 @@ module Api::V1
     class IndexingController < ApplicationController
         skip_before_filter :verify_authenticity_token
 
-	    def indexpage
-		    url = params["url"]
+        def indexpage
+            url = params["url"]
             indexer_results = Indexing.process_prefered(url)
             index_status = indexer_results[:status]
             index_msg = indexer_results[:msg]
@@ -18,9 +18,9 @@ module Api::V1
             end
 
         end
-	
-	    def query
-		    url = params["url"]
+    
+        def query
+            url = params["url"]
             query_results = Indexing.query(url)
             status = query_results[:status]
             res = query_results[:msg]
@@ -29,6 +29,6 @@ module Api::V1
             else
                 render json: {msg: res}.to_json, status: status
             end
-	    end
+        end
     end
 end 
